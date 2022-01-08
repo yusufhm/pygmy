@@ -10,9 +10,9 @@ theme:
   palette:
     primary: 'blue'
     accent: 'light blue'
-  favicon: lagoon-cli-logo.png
+  favicon: images/pygmystack_icon.png
+  logo: images/pygmystack_icon_wh.png
   icon:
-    logo: fontawesome/solid/terminal
     repo: fontawesome/brands/github 
 
 markdown_extensions:
