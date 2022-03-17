@@ -6,7 +6,6 @@ import (
 	"strings"
 
 	"github.com/docker/docker/api/types"
-	"github.com/docker/docker/client"
 	. "github.com/logrusorgru/aurora"
 
 	"github.com/pygmystack/pygmy/service/color"
@@ -262,7 +261,7 @@ var _ DockerService = (*Service)(nil)
 // DockerLogs will return the logs from the container.
 func (Service *Service) DockerLogs() ([]byte, error) {
 	ctx := context.Background()
-	cli, err := client.NewClientWithOpts()
+	cli, err := docker.NewCli()
 	cli.NegotiateAPIVersion(ctx)
 	if err != nil {
 		return []byte{}, err
@@ -276,7 +275,7 @@ func (Service *Service) DockerLogs() ([]byte, error) {
 func (Service *Service) DockerRun() error {
 
 	ctx := context.Background()
-	cli, err := client.NewClientWithOpts()
+	cli, err := docker.NewCli()
 	cli.NegotiateAPIVersion(ctx)
 	if err != nil {
 		return err
@@ -298,7 +297,7 @@ func (Service *Service) DockerRun() error {
 func (Service *Service) DockerCreate() error {
 
 	ctx := context.Background()
-	cli, err := client.NewClientWithOpts()
+	cli, err := docker.NewCli()
 	cli.NegotiateAPIVersion(ctx)
 	if err != nil {
 		return err

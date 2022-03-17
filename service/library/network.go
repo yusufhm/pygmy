@@ -5,7 +5,6 @@ import (
 	"fmt"
 
 	"github.com/docker/docker/api/types"
-	"github.com/docker/docker/client"
 	"github.com/pygmystack/pygmy/service/interface/docker"
 )
 
@@ -26,7 +25,7 @@ func NetworkConnect(network string, containerName string) error {
 // been created, and will return false if the network can not be found.
 func NetworkStatus(network string) (bool, error) {
 	ctx := context.Background()
-	cli, err := client.NewClientWithOpts()
+	cli, err := docker.NewCli()
 	cli.NegotiateAPIVersion(ctx)
 	if err != nil {
 		return false, err
@@ -37,5 +36,5 @@ func NetworkStatus(network string) (bool, error) {
 			return true, nil
 		}
 	}
-	return false, fmt.Errorf("network %v not found\n", network)
+	return false, fmt.Errorf("network %v not found", network)
 }
